@@ -48,6 +48,8 @@ This project is divided into three main parts:
 git clone https://github.com/priyanshujaiswalku/BangaloreHomePricePrediction.git
 cd BangaloreHomePricePrediction
 
+---
+
 ### 2. Create Virtual Environment
 python -m venv venv
 
