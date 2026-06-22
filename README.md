@@ -48,42 +48,41 @@ This project is divided into three main parts:
 git clone https://github.com/priyanshujaiswalku/BangaloreHomePricePrediction.git
 cd BangaloreHomePricePrediction
 
-2. Create Virtual Environment
+### 2. Create Virtual Environment
 python -m venv venv
 
 Activate it:
 
 Windows
-
 venv\Scripts\activate
 
 Mac/Linux
-
 source venv/bin/activate
+
 3. Install Dependencies
 pip install -r requirements.txt
+
 4. Run Backend Server
 cd server
 python server.py
+
 5. Run Frontend
-
 Open this file in browser:
-
 client/index.html
+
 ✨ Features
-Predict house prices instantly
-User-friendly interface
-Full-stack ML project
-Real-world dataset
+⚡ Predict house prices instantly
+🎯 User-friendly interface
+🧠 Full-stack Machine Learning project
+📊 Built on real-world dataset
+
 🔮 Future Improvements
-Add map-based location selection
-Deploy project online
-Improve model accuracy
-Add login system
+🗺️ Add map-based location selection
+☁️ Deploy project online (Cloud)
+📈 Improve model accuracy
+🔐 Add user authentication system
+
 🙌 Contributing
+Contributions are welcome!
+Feel free to fork this repository and submit a pull request.
 
-Feel free to fork this repo and contribute!
-
-📧 Contact
-
-Priyanshu Jaiswal
