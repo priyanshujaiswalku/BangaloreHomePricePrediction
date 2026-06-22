@@ -70,17 +70,26 @@ python server.py
 Open this file in browser:
 client/index.html
 
-✨ Features
+---
+
+
+## ✨ Features
 ⚡ Predict house prices instantly
 🎯 User-friendly interface
 🧠 Full-stack Machine Learning project
 📊 Built on real-world dataset
 
-🔮 Future Improvements
+---
+
+
+## 🔮 Future Improvements
 🗺️ Add map-based location selection
 ☁️ Deploy project online (Cloud)
 📈 Improve model accuracy
 🔐 Add user authentication system
+
+---
+
 
 🙌 Contributing
 Contributions are welcome!
