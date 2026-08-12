@@ -2,7 +2,7 @@
 //  Bangalore Home Price Predictor — Client-side Modern JS
 // ===================================================================
 
-const API_BASE = ""; // Relative URL allows serving from Flask backend directly
+const API_BASE = "https://bangalore-home-price-2jww.onrender.com";
 
 // Global State
 let allLocations = [];
