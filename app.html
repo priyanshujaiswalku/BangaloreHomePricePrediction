@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bangalore Home Price Prediction — Get instant property price estimates based on location, size, BHK, and bathrooms using machine learning.">
+    <title>Bangalore Home Price Prediction</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animated Background Particles -->
+    <div class="bg-particles" aria-hidden="true">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <div class="nav-logo">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M14 2L2 12H6V24H22V12H26L14 2Z" fill="url(#logoGrad)" stroke="white" stroke-width="1.5"/>
+                    <rect x="10" y="16" width="8" height="8" rx="1" fill="rgba(255,255,255,0.3)"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="2" y1="2" x2="26" y2="24">
+                            <stop offset="0%" stop-color="#6366f1"/>
+                            <stop offset="100%" stop-color="#a855f7"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="nav-title">BHP</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="nav-link active">Home</a></li>
+            <li><a href="#predictor" class="nav-link">Predict</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🏡 ML-Powered Predictions</div>
+            <h1 class="hero-title">
+                Bangalore <span class="gradient-text">Home Price</span> Prediction
+            </h1>
+            <p class="hero-subtitle">
+                Get instant, accurate property price estimates for any location in Bangalore.
+                Powered by machine learning trained on real market data.
+            </p>
+            <a href="#predictor" class="hero-cta" id="hero-cta-btn">
+                <span>Estimate Price Now</span>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <span class="hero-card-dot red"></span>
+                    <span class="hero-card-dot yellow"></span>
+                    <span class="hero-card-dot green"></span>
+                </div>
+                <div class="hero-card-body">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">₹85.2L</span>
+                        <span class="hero-stat-label">Avg. Prediction</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">245+</span>
+                        <span class="hero-stat-label">Locations</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">93%</span>
+                        <span class="hero-stat-label">Accuracy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Predictor Section -->
+    <section class="predictor-section" id="predictor">
+        <div class="section-header">
+            <h2 class="section-title">Price <span class="gradient-text">Estimator</span></h2>
+            <p class="section-subtitle">Fill in the property details below to get an estimated price</p>
+        </div>
+
+        <div class="predictor-container">
+            <form class="predictor-form" id="prediction-form">
+
+                <!-- Area Input -->
+                <div class="form-group" id="form-group-area">
+                    <label for="uiSqft" class="form-label">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M6 2V6H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M12 16V12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Area (Square Feet)
+                    </label>
+                    <input type="number" id="uiSqft" class="form-input" placeholder="e.g. 1200" min="100" step="1" required>
+                    <span class="form-hint">Total built-up area in sq.ft</span>
+                </div>
+
+                <!-- BHK Selection -->
+                <div class="form-group" id="form-group-bhk">
+                    <label class="form-label">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M2 16V7L9 2L16 7V16H11V11H7V16H2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        BHK
+                    </label>
+                    <div class="btn-group" id="uiBHK">
+                        <button type="button" class="btn-option" value="1">1 BHK</button>
+                        <button type="button" class="btn-option" value="2">2 BHK</button>
+                        <button type="button" class="btn-option active" value="3">3 BHK</button>
+                        <button type="button" class="btn-option" value="4">4 BHK</button>
+                        <button type="button" class="btn-option" value="5">5 BHK</button>
+                    </div>
+                </div>
+
+                <!-- Bath Selection -->
+                <div class="form-group" id="form-group-bath">
+                    <label class="form-label">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M3 9H15V13C15 14.6569 13.6569 16 12 16H6C4.34315 16 3 14.6569 3 13V9Z" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M5 9V4C5 2.89543 5.89543 2 7 2H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Bath
+                    </label>
+                    <div class="btn-group" id="uiBathrooms">
+                        <button type="button" class="btn-option" value="1">1</button>
+                        <button type="button" class="btn-option active" value="2">2</button>
+                        <button type="button" class="btn-option" value="3">3</button>
+                        <button type="button" class="btn-option" value="4">4</button>
+                        <button type="button" class="btn-option" value="5">5</button>
+                    </div>
+                </div>
+
+                <!-- Location Dropdown -->
+                <div class="form-group" id="form-group-location">
+                    <label for="uiLocations" class="form-label">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path d="M9 16C9 16 15 11.5 15 7C15 3.68629 12.3137 1 9 1C5.68629 1 3 3.68629 3 7C3 11.5 9 16 9 16Z" stroke="currentColor" stroke-width="1.5"/>
+                            <circle cx="9" cy="7" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                        Location
+                    </label>
+                    <div class="select-wrapper">
+                        <select id="uiLocations" class="form-select" required>
+                            <option value="" disabled selected>Choose a location...</option>
+                        </select>
+                        <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit" id="btn-estimate">
+                    <span class="btn-submit-text">Estimate Price</span>
+                    <span class="btn-submit-loader" id="btn-loader">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="10" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                </button>
+            </form>
+
+            <!-- Result Card -->
+            <div class="result-card hidden" id="result-card">
+                <div class="result-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#resultGrad)" stroke-width="2"/>
+                        <path d="M10 16L14 20L22 12" stroke="url(#resultGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <defs>
+                            <linearGradient id="resultGrad" x1="2" y1="2" x2="30" y2="30">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#a855f7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="result-label">Estimated Price</div>
+                <div class="result-price" id="uiEstimatedPrice">--</div>
+                <div class="result-sublabel" id="result-details"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="section-header">
+            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+            <p class="section-subtitle">Our prediction model uses machine learning to estimate property prices</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card" id="about-data">
+                <div class="about-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 18V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M14 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20 18V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3>Real Market Data</h3>
+                <p>Trained on thousands of Bangalore property transactions for accurate predictions.</p>
+            </div>
+            <div class="about-card" id="about-model">
+                <div class="about-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="7" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="21" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M14 11V14L7 17" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M14 14L21 17" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>ML-Powered</h3>
+                <p>Uses a Random Forest Classifier for robust, high-accuracy property price predictions.</p>
+            </div>
+            <div class="about-card" id="about-locations">
+                <div class="about-card-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <path d="M14 24C14 24 22 17.5 22 11C22 6.02944 18.4183 2 14 2C9.58172 2 6 6.02944 6 11C6 17.5 14 24 14 24Z" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="14" cy="11" r="3" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>245+ Locations</h3>
+                <p>Covers all major neighborhoods and localities across Bangalore city.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Bangalore Home Price Prediction. Built with ❤️ using ML.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
