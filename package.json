@@ -1,0 +1,9 @@
+{
+  "name": "bangalore-home-price-prediction",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "python server/server.py",
+    "start": "python server/server.py"
+  }
+}

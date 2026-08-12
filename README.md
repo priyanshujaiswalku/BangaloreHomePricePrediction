@@ -16,5 +16,15 @@ This repository is divided into three main components:
 * **Backend:** Python Flask 
 * **Frontend:** HTML, CSS, Vanilla JavaScript
 
+## Run locally
+
+Start both the Flask API and frontend with one command:
+
+```bash
+npm run dev
+```
+
+Then open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
+
 
 
