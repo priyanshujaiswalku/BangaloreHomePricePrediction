@@ -1,88 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bangalore Home Price Prediction — Get instant property price estimates based on location, size, BHK, and bathrooms using machine learning.">
-    <title>Bangalore Home Price Prediction</title>
-    <link rel="stylesheet" href="app.css">
+    <meta name="description" content="Bangalore Home Price Prediction — Instant AI property estimates, price per sq.ft breakdown, EMI calculator, and market trends.">
+    <title>Bangalore Home Price Predictor | AI Real Estate Valuations</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Chart.js for Market Analytics Visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- App Stylesheet -->
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
 
-    <!-- Animated Background Particles -->
-    <div class="bg-particles" aria-hidden="true">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+    <!-- Animated Ambient Background Blobs -->
+    <div class="bg-glow-container" aria-hidden="true">
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+        <div class="glow-blob blob-3"></div>
+        <div class="bg-grid-overlay"></div>
     </div>
 
     <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <div class="nav-logo">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M14 2L2 12H6V24H22V12H26L14 2Z" fill="url(#logoGrad)" stroke="white" stroke-width="1.5"/>
-                    <rect x="10" y="16" width="8" height="8" rx="1" fill="rgba(255,255,255,0.3)"/>
-                    <defs>
-                        <linearGradient id="logoGrad" x1="2" y1="2" x2="26" y2="24">
-                            <stop offset="0%" stop-color="#6366f1"/>
-                            <stop offset="100%" stop-color="#a855f7"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
+        <div class="nav-container">
+            <a href="#hero" class="nav-brand">
+                <div class="nav-logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </div>
+                <div class="nav-brand-text">
+                    <span class="brand-title">Bangalore<span class="gradient-text">Homes</span></span>
+                    <span class="brand-subtitle">AI Price Intelligence</span>
+                </div>
+            </a>
+
+            <div class="nav-right">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#hero" class="nav-link active">Home</a></li>
+                    <li><a href="#predictor" class="nav-link">Estimator</a></li>
+                    <li><a href="#market-trends" class="nav-link">Market Trends</a></li>
+                    <li><a href="#about" class="nav-link">About ML</a></li>
+                </ul>
+
+                <!-- Theme Toggle Button -->
+                <button type="button" class="theme-toggle" id="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-            <span class="nav-title">BHP</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#hero" class="nav-link active">Home</a></li>
-            <li><a href="#predictor" class="nav-link">Predict</a></li>
-            <li><a href="#about" class="nav-link">About</a></li>
-        </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-badge">🏡 ML-Powered Predictions</div>
-            <h1 class="hero-title">
-                Bangalore <span class="gradient-text">Home Price</span> Prediction
-            </h1>
-            <p class="hero-subtitle">
-                Get instant, accurate property price estimates for any location in Bangalore.
-                Powered by machine learning trained on real market data.
-            </p>
-            <a href="#predictor" class="hero-cta" id="hero-cta-btn">
-                <span>Estimate Price Now</span>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-card">
-                <div class="hero-card-header">
-                    <span class="hero-card-dot red"></span>
-                    <span class="hero-card-dot yellow"></span>
-                    <span class="hero-card-dot green"></span>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot pulse"></span>
+                    <span>ML Model Trained on 13,000+ Bangalore Listings</span>
                 </div>
-                <div class="hero-card-body">
-                    <div class="hero-stat">
-                        <span class="hero-stat-value">₹85.2L</span>
-                        <span class="hero-stat-label">Avg. Prediction</span>
+                <h1 class="hero-title">
+                    Predict Property Prices in <span class="gradient-text">Bangalore</span> with AI Accuracy
+                </h1>
+                <p class="hero-subtitle">
+                    Get instant valuation estimates, sq.ft rates, EMI forecasts, and location insights powered by Machine Learning trained on real Bangalore real estate transactions.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#predictor" class="btn btn-primary" id="hero-cta-btn">
+                        <span>Calculate Valuation</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <a href="#market-trends" class="btn btn-secondary">
+                        <span>Explore Insights</span>
+                    </a>
+                </div>
+
+                <!-- Live Server Status Indicator -->
+                <div class="server-status-pill" id="server-status-pill">
+                    <span class="status-dot offline" id="status-dot"></span>
+                    <span id="status-text">Checking Flask API...</span>
+                </div>
+            </div>
+
+            <!-- Hero Floating Cards Visual -->
+            <div class="hero-visual">
+                <div class="glass-card main-hero-card">
+                    <div class="hero-card-header">
+                        <div class="card-chip">LIVE DEMO PREDICTION</div>
+                        <span class="card-tag">Whitefield, BLR</span>
                     </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-value">245+</span>
-                        <span class="hero-stat-label">Locations</span>
+                    <div class="hero-price-preview">
+                        <span class="currency">₹</span>
+                        <span class="amount" id="hero-demo-price">98.50</span>
+                        <span class="unit">Lakh</span>
                     </div>
-                    <div class="hero-stat">
-                        <span class="hero-stat-value">93%</span>
-                        <span class="hero-stat-label">Accuracy</span>
+                    <div class="hero-specs-grid">
+                        <div class="spec-item">
+                            <span class="spec-value">1,450</span>
+                            <span class="spec-label">Sq. Ft</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">3 BHK</span>
+                            <span class="spec-label">Bedrooms</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">2</span>
+                            <span class="spec-label">Baths</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-value">₹6,793</span>
+                            <span class="spec-label">/ sq.ft</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card stat-hero-card floating-card-1">
+                    <div class="stat-icon purple">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-num">245+</div>
+                        <div class="stat-label">Neighborhoods Covered</div>
+                    </div>
+                </div>
+
+                <div class="glass-card stat-hero-card floating-card-2">
+                    <div class="stat-icon cyan">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="stat-num">R² = 0.85</div>
+                        <div class="stat-label">Model Accuracy</div>
                     </div>
                 </div>
             </div>
@@ -91,166 +174,396 @@
 
     <!-- Predictor Section -->
     <section class="predictor-section" id="predictor">
-        <div class="section-header">
-            <h2 class="section-title">Price <span class="gradient-text">Estimator</span></h2>
-            <p class="section-subtitle">Fill in the property details below to get an estimated price</p>
-        </div>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">INTELLIGENT ESTIMATOR</span>
+                <h2 class="section-title">Calculate Your Property <span class="gradient-text">Valuation</span></h2>
+                <p class="section-subtitle">Select location, enter area size, and pick room configurations to get real-time price estimation.</p>
+            </div>
 
-        <div class="predictor-container">
-            <form class="predictor-form" id="prediction-form">
+            <!-- Quick Presets Carousel -->
+            <div class="presets-wrapper">
+                <span class="presets-label">⚡ Quick Presets:</span>
+                <div class="presets-scroll">
+                    <button type="button" class="preset-chip" data-location="whitefield" data-sqft="1250" data-bhk="2" data-bath="2">
+                        📍 2 BHK Whitefield (1250 sqft)
+                    </button>
+                    <button type="button" class="preset-chip" data-location="electronic city phase 1" data-sqft="1050" data-bhk="2" data-bath="2">
+                        📍 2 BHK Electronic City (1050 sqft)
+                    </button>
+                    <button type="button" class="preset-chip" data-location="indiranagar" data-sqft="1800" data-bhk="3" data-bath="3">
+                        📍 3 BHK Indiranagar (1800 sqft)
+                    </button>
+                    <button type="button" class="preset-chip" data-location="hsr layout" data-sqft="1500" data-bhk="3" data-bath="2">
+                        📍 3 BHK HSR Layout (1500 sqft)
+                    </button>
+                    <button type="button" class="preset-chip" data-location="yelahanka" data-sqft="2200" data-bhk="4" data-bath="3">
+                        📍 4 BHK Yelahanka (2200 sqft)
+                    </button>
+                </div>
+            </div>
 
-                <!-- Area Input -->
-                <div class="form-group" id="form-group-area">
-                    <label for="uiSqft" class="form-label">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M6 2V6H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                            <path d="M12 16V12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                        Area (Square Feet)
-                    </label>
-                    <input type="number" id="uiSqft" class="form-input" placeholder="e.g. 1200" min="100" step="1" required>
-                    <span class="form-hint">Total built-up area in sq.ft</span>
+            <div class="predictor-grid">
+                <!-- Prediction Form Card -->
+                <div class="glass-card form-card">
+                    <form id="prediction-form" autocomplete="off">
+                        
+                        <!-- Location Searchable Select -->
+                        <div class="form-group">
+                            <label class="form-label" for="location-search-input">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span>Property Location</span>
+                            </label>
+                            
+                            <div class="autocomplete-wrapper" id="autocomplete-wrapper">
+                                <div class="input-with-icon">
+                                    <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                    <input type="text" id="location-search-input" class="form-input" placeholder="Type neighborhood e.g. Whitefield, HSR..." required>
+                                    <button type="button" class="clear-input-btn hidden" id="clear-location-btn" aria-label="Clear location">✕</button>
+                                </div>
+
+                                <!-- Hidden native select for API mapping -->
+                                <select id="uiLocations" class="hidden-native-select" aria-hidden="true"></select>
+
+                                <!-- Dropdown Suggestion Box -->
+                                <div class="location-suggestions-box hidden" id="location-suggestions-box">
+                                    <div class="suggestions-header">
+                                        <span id="suggestion-count-text">245 locations available</span>
+                                    </div>
+                                    <ul class="suggestions-list" id="suggestions-list"></ul>
+                                </div>
+                            </div>
+
+                            <!-- Popular Location Pill Tags -->
+                            <div class="popular-locations-pills">
+                                <span class="pill-title">Popular:</span>
+                                <div class="pills-flex" id="popular-pills-container">
+                                    <button type="button" class="loc-pill" data-loc="whitefield">Whitefield</button>
+                                    <button type="button" class="loc-pill" data-loc="indiranagar">Indiranagar</button>
+                                    <button type="button" class="loc-pill" data-loc="electronic city">Electronic City</button>
+                                    <button type="button" class="loc-pill" data-loc="hsr layout">HSR Layout</button>
+                                    <button type="button" class="loc-pill" data-loc="koramangala">Koramangala</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Area Input (Sq. Ft.) with Dual Slider & Presets -->
+                        <div class="form-group">
+                            <div class="label-with-value">
+                                <label class="form-label" for="uiSqft">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                                    </svg>
+                                    <span>Built-up Area</span>
+                                </label>
+                                <div class="sqft-badge"><span id="sqft-display-val">1,200</span> sq.ft</div>
+                            </div>
+
+                            <div class="sqft-input-row">
+                                <input type="number" id="uiSqft" class="form-input" placeholder="e.g. 1200" min="300" max="10000" step="10" value="1200" required>
+                                <span class="unit-tag">sq.ft</span>
+                            </div>
+
+                            <!-- Range Slider -->
+                            <div class="range-slider-wrapper">
+                                <input type="range" id="uiSqftSlider" class="range-slider" min="300" max="5000" step="25" value="1200">
+                                <div class="slider-marks">
+                                    <span>300</span>
+                                    <span>1,500</span>
+                                    <span>3,000</span>
+                                    <span>5,000+</span>
+                                </div>
+                            </div>
+
+                            <!-- Quick Area Presets -->
+                            <div class="quick-sqft-presets">
+                                <button type="button" class="sqft-preset-btn" data-val="800">800 sqft</button>
+                                <button type="button" class="sqft-preset-btn active" data-val="1200">1200 sqft</button>
+                                <button type="button" class="sqft-preset-btn" data-val="1500">1500 sqft</button>
+                                <button type="button" class="sqft-preset-btn" data-val="2000">2000 sqft</button>
+                                <button type="button" class="sqft-preset-btn" data-val="3000">3000 sqft</button>
+                            </div>
+                        </div>
+
+                        <!-- BHK Selector -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                </svg>
+                                <span>Bedrooms (BHK)</span>
+                            </label>
+                            <div class="btn-selector-group" id="uiBHK">
+                                <button type="button" class="btn-option" data-value="1">1 BHK</button>
+                                <button type="button" class="btn-option" data-value="2">2 BHK</button>
+                                <button type="button" class="btn-option active" data-value="3">3 BHK</button>
+                                <button type="button" class="btn-option" data-value="4">4 BHK</button>
+                                <button type="button" class="btn-option" data-value="5">5+ BHK</button>
+                            </div>
+                        </div>
+
+                        <!-- Bathrooms Selector -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0l-.88.88a1.5 1.5 0 0 0 0 2.12L6 9"></path>
+                                    <rect width="18" height="10" x="3" y="11" rx="2"></rect>
+                                </svg>
+                                <span>Bathrooms</span>
+                            </label>
+                            <div class="btn-selector-group" id="uiBathrooms">
+                                <button type="button" class="btn-option" data-value="1">1 Bath</button>
+                                <button type="button" class="btn-option active" data-value="2">2 Baths</button>
+                                <button type="button" class="btn-option" data-value="3">3 Baths</button>
+                                <button type="button" class="btn-option" data-value="4">4 Baths</button>
+                                <button type="button" class="btn-option" data-value="5">5+ Baths</button>
+                            </div>
+                        </div>
+
+                        <!-- Submit CTA Button -->
+                        <button type="submit" class="btn-submit" id="btn-estimate">
+                            <span class="btn-submit-content">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                                <span>Calculate Estimated Price</span>
+                            </span>
+                            <span class="btn-submit-loader" id="btn-loader">
+                                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-linecap="round"></circle>
+                                </svg>
+                                <span>Running Prediction Model...</span>
+                            </span>
+                        </button>
+                    </form>
                 </div>
 
-                <!-- BHK Selection -->
-                <div class="form-group" id="form-group-bhk">
-                    <label class="form-label">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <path d="M2 16V7L9 2L16 7V16H11V11H7V16H2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                        BHK
-                    </label>
-                    <div class="btn-group" id="uiBHK">
-                        <button type="button" class="btn-option" value="1">1 BHK</button>
-                        <button type="button" class="btn-option" value="2">2 BHK</button>
-                        <button type="button" class="btn-option active" value="3">3 BHK</button>
-                        <button type="button" class="btn-option" value="4">4 BHK</button>
-                        <button type="button" class="btn-option" value="5">5 BHK</button>
+                <!-- Result & Valuation Dashboard -->
+                <div class="glass-card result-dashboard" id="result-card">
+                    <div class="result-placeholder" id="result-placeholder">
+                        <div class="placeholder-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Ready for Valuation</h3>
+                        <p>Fill out the property details or pick a quick preset to compute real-time price estimation.</p>
+                    </div>
+
+                    <div class="result-content hidden" id="result-content">
+                        <div class="result-header">
+                            <div class="result-badge">
+                                <span class="sparkle-icon">✨</span> AI Estimated Valuation
+                            </div>
+                            <button type="button" class="copy-result-btn" id="copy-result-btn" title="Copy valuation summary">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+
+                        <!-- Big Price Display -->
+                        <div class="primary-price-container">
+                            <div class="price-main-display" id="uiEstimatedPrice">₹0.00 Lakh</div>
+                            <div class="price-range-badge" id="uiPriceRange">Estimated Range: ₹0 Lakh - ₹0 Lakh</div>
+                        </div>
+
+                        <!-- Property Specs Chips -->
+                        <div class="result-summary-tags" id="result-summary-tags">
+                            <!-- Populated via JS -->
+                        </div>
+
+                        <!-- Financial & Market Breakdown Grid -->
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon purple">📊</div>
+                                <div class="metric-info">
+                                    <span class="metric-label">Rate per Sq. Ft.</span>
+                                    <span class="metric-value" id="uiRatePerSqft">₹0 / sq.ft</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon green">🏦</div>
+                                <div class="metric-info">
+                                    <span class="metric-label">Est. Monthly EMI</span>
+                                    <span class="metric-value" id="uiMonthlyEMI">₹0 / mo</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon blue">🏷️</div>
+                                <div class="metric-info">
+                                    <span class="metric-label">Locality Tier</span>
+                                    <span class="metric-value" id="uiLocationTier">Mid-Tier</span>
+                                </div>
+                            </div>
+
+                            <div class="metric-card">
+                                <div class="metric-icon orange">📈</div>
+                                <div class="metric-info">
+                                    <span class="metric-label">Appreciation Rate</span>
+                                    <span class="metric-value" id="uiAppreciation">~7.8% / yr</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Comparison Chart -->
+                        <div class="chart-container-box">
+                            <div class="chart-header">
+                                <span class="chart-title">Neighborhood Rate Comparison (₹ / sq.ft)</span>
+                            </div>
+                            <div class="canvas-wrapper">
+                                <canvas id="priceComparisonChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div class="result-actions-bar">
+                            <button type="button" class="btn btn-secondary btn-sm" id="share-whatsapp-btn">
+                                💬 Share on WhatsApp
+                            </button>
+                            <button type="button" class="btn btn-secondary btn-sm" id="print-summary-btn">
+                                🖨️ Print / Save Summary
+                            </button>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Bath Selection -->
-                <div class="form-group" id="form-group-bath">
-                    <label class="form-label">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <path d="M3 9H15V13C15 14.6569 13.6569 16 12 16H6C4.34315 16 3 14.6569 3 13V9Z" stroke="currentColor" stroke-width="1.5"/>
-                            <path d="M5 9V4C5 2.89543 5.89543 2 7 2H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        </svg>
-                        Bath
-                    </label>
-                    <div class="btn-group" id="uiBathrooms">
-                        <button type="button" class="btn-option" value="1">1</button>
-                        <button type="button" class="btn-option active" value="2">2</button>
-                        <button type="button" class="btn-option" value="3">3</button>
-                        <button type="button" class="btn-option" value="4">4</button>
-                        <button type="button" class="btn-option" value="5">5</button>
-                    </div>
-                </div>
-
-                <!-- Location Dropdown -->
-                <div class="form-group" id="form-group-location">
-                    <label for="uiLocations" class="form-label">
-                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <path d="M9 16C9 16 15 11.5 15 7C15 3.68629 12.3137 1 9 1C5.68629 1 3 3.68629 3 7C3 11.5 9 16 9 16Z" stroke="currentColor" stroke-width="1.5"/>
-                            <circle cx="9" cy="7" r="2.5" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                        Location
-                    </label>
-                    <div class="select-wrapper">
-                        <select id="uiLocations" class="form-select" required>
-                            <option value="" disabled selected>Choose a location...</option>
-                        </select>
-                        <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn-submit" id="btn-estimate">
-                    <span class="btn-submit-text">Estimate Price</span>
-                    <span class="btn-submit-loader" id="btn-loader">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-dasharray="40" stroke-dashoffset="10" stroke-linecap="round"/>
-                        </svg>
-                    </span>
-                </button>
-            </form>
-
-            <!-- Result Card -->
-            <div class="result-card hidden" id="result-card">
-                <div class="result-icon">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                        <circle cx="16" cy="16" r="14" stroke="url(#resultGrad)" stroke-width="2"/>
-                        <path d="M10 16L14 20L22 12" stroke="url(#resultGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <defs>
-                            <linearGradient id="resultGrad" x1="2" y1="2" x2="30" y2="30">
-                                <stop offset="0%" stop-color="#6366f1"/>
-                                <stop offset="100%" stop-color="#a855f7"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div class="result-label">Estimated Price</div>
-                <div class="result-price" id="uiEstimatedPrice">--</div>
-                <div class="result-sublabel" id="result-details"></div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Market Trends & Insights Section -->
+    <section class="trends-section" id="market-trends">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">BANGALORE REAL ESTATE</span>
+                <h2 class="section-title">Top Hotspot <span class="gradient-text">Neighborhoods</span></h2>
+                <p class="section-subtitle">Average price ranges across key Bangalore technology & commercial hubs.</p>
+            </div>
+
+            <div class="hotspots-grid">
+                <div class="glass-card hotspot-card" data-location="indiranagar">
+                    <div class="hotspot-header">
+                        <span class="hotspot-badge luxury">Premium Hub</span>
+                        <h3>Indiranagar</h3>
+                    </div>
+                    <div class="hotspot-price">₹12,500 - ₹18,000 <span>/ sq.ft</span></div>
+                    <p class="hotspot-desc">High-end residential area, vibrant nightlife, metro connection, and tech hubs nearby.</p>
+                    <button type="button" class="hotspot-btn">Analyze Indiranagar →</button>
+                </div>
+
+                <div class="glass-card hotspot-card" data-location="koramangala">
+                    <div class="hotspot-header">
+                        <span class="hotspot-badge luxury">Startup Hub</span>
+                        <h3>Koramangala</h3>
+                    </div>
+                    <div class="hotspot-price">₹10,200 - ₹15,500 <span>/ sq.ft</span></div>
+                    <p class="hotspot-desc">Bangalore's famous startup district with top restaurants, malls, and tech parks.</p>
+                    <button type="button" class="hotspot-btn">Analyze Koramangala →</button>
+                </div>
+
+                <div class="glass-card hotspot-card" data-location="whitefield">
+                    <div class="hotspot-header">
+                        <span class="hotspot-badge tech">Major IT Corridor</span>
+                        <h3>Whitefield</h3>
+                    </div>
+                    <div class="hotspot-price">₹6,200 - ₹9,800 <span>/ sq.ft</span></div>
+                    <p class="hotspot-desc">Massive IT cluster (ITPB), upcoming metro line extensions, and modern high-rise gated communities.</p>
+                    <button type="button" class="hotspot-btn">Analyze Whitefield →</button>
+                </div>
+
+                <div class="glass-card hotspot-card" data-location="hsr layout">
+                    <div class="hotspot-header">
+                        <span class="hotspot-badge popular">Family Favorite</span>
+                        <h3>HSR Layout</h3>
+                    </div>
+                    <div class="hotspot-price">₹8,500 - ₹12,000 <span>/ sq.ft</span></div>
+                    <p class="hotspot-desc">Well-planned sector grid layout with parks, top schools, and quick connectivity to ORR tech parks.</p>
+                    <button type="button" class="hotspot-btn">Analyze HSR Layout →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Machine Learning Section -->
     <section class="about-section" id="about">
-        <div class="section-header">
-            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
-            <p class="section-subtitle">Our prediction model uses machine learning to estimate property prices</p>
-        </div>
-        <div class="about-grid">
-            <div class="about-card" id="about-data">
-                <div class="about-card-icon">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <rect x="3" y="3" width="22" height="22" rx="4" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M8 18V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M14 18V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M20 18V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <h3>Real Market Data</h3>
-                <p>Trained on thousands of Bangalore property transactions for accurate predictions.</p>
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">MACHINE LEARNING ARCHITECTURE</span>
+                <h2 class="section-title">How the <span class="gradient-text">AI Model</span> Works</h2>
+                <p class="section-subtitle">Trained on clean Bangalore property data with feature engineering & regression techniques.</p>
             </div>
-            <div class="about-card" id="about-model">
-                <div class="about-card-icon">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <circle cx="14" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
-                        <circle cx="7" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/>
-                        <circle cx="21" cy="20" r="3" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M14 11V14L7 17" stroke="currentColor" stroke-width="1.5"/>
-                        <path d="M14 14L21 17" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
+
+            <div class="about-grid">
+                <div class="glass-card about-card">
+                    <div class="about-icon-box purple">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>Data Cleaning & Outliers</h3>
+                    <p>Processed raw real estate datasets by removing price per sq.ft anomalies, invalid room ratios, and standardizing location labels.</p>
                 </div>
-                <h3>ML-Powered</h3>
-                <p>Uses a Random Forest Classifier for robust, high-accuracy property price predictions.</p>
-            </div>
-            <div class="about-card" id="about-locations">
-                <div class="about-card-icon">
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                        <path d="M14 24C14 24 22 17.5 22 11C22 6.02944 18.4183 2 14 2C9.58172 2 6 6.02944 6 11C6 17.5 14 24 14 24Z" stroke="currentColor" stroke-width="1.5"/>
-                        <circle cx="14" cy="11" r="3" stroke="currentColor" stroke-width="1.5"/>
-                    </svg>
+
+                <div class="glass-card about-card">
+                    <div class="about-icon-box cyan">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>One-Hot Location Encoding</h3>
+                    <p>Encodes 240+ location categorical columns into binary feature matrices for high precision geographical price variance capture.</p>
                 </div>
-                <h3>245+ Locations</h3>
-                <p>Covers all major neighborhoods and localities across Bangalore city.</p>
+
+                <div class="glass-card about-card">
+                    <div class="about-icon-box green">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 20V10"></path>
+                            <path d="M12 20V4"></path>
+                            <path d="M6 20v-6"></path>
+                        </svg>
+                    </div>
+                    <h3>Linear & Ensemble Regression</h3>
+                    <p>Evaluated Linear Regression, Lasso, and Decision Trees using Grid Search CV to achieve maximum R² validation score.</p>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Toast Notification Popup -->
+    <div class="toast-container" id="toast-container"></div>
 
     <!-- Footer -->
-    <footer class="footer" id="footer">
-        <div class="footer-content">
-            <p>&copy; 2026 Bangalore Home Price Prediction. Built with ❤️ using ML.</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-brand">Bangalore Home Price Predictor</span>
+                <span class="footer-copy">&copy; 2026. Built with Python, Scikit-Learn & Modern UI.</span>
+            </div>
+            <div class="footer-right">
+                <a href="#hero" class="back-to-top">Back to top ↑</a>
+            </div>
         </div>
     </footer>
 
+    <!-- App JavaScript -->
     <script src="app.js"></script>
 </body>
 </html>
+

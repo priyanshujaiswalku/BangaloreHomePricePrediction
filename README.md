@@ -16,17 +16,5 @@ This repository is divided into three main components:
 * **Backend:** Python Flask 
 * **Frontend:** HTML, CSS, Vanilla JavaScript
 
-## 🚀 Getting Started
 
-Follow these instructions to get a copy of the project up and running on your local machine.
 
-### Prerequisites
-Make sure you have the following installed on your system:
-* [Python 3.x](https://www.python.org/)
-
-### Installation & Setup
-
-**1. Clone the repository**
-```bash
-git clone [https://github.com/sarthakanand1409-gif/bangalore-home-price.git](https://github.com/sarthakanand1409-gif/bangalore-home-price.git)
-cd bangalore-home-price
